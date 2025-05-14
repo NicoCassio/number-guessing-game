@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,6 +29,7 @@ public class Main {
 
       System.out.println("Great! You have selected the " + difficulties[choice - 1] + " difficulty level.");
       System.out.println("Let's start the game!");
+      Instant start = Instant.now();
 
       int[] chances = { 10, 5, 3 };
 
@@ -35,9 +38,11 @@ public class Main {
         int guess = scanner.nextInt();
 
         if (guess == numberToGuess) {
+          Instant end = Instant.now();
           String attemptPlural = i > 0 ? "attempts" : "attempt";
           System.out
               .println("Congratulations! You guessed the correct number in " + (i + 1) + " " + attemptPlural + ".");
+          System.out.println("You took " + Duration.between(start, end).getSeconds() + " seconds.");
           break;
         }
 
